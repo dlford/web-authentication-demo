@@ -1,0 +1,19 @@
+env:
+  browser: false
+  es6: true
+  node: true
+parserOptions:
+  sourceType: module
+  ecmaVersion: 2022
+settings:
+  import/resolver:
+    babel-module:
+plugins:
+  - prettier
+  - import
+extends:
+  - "eslint:recommended"
+  - "prettier"
+  - "plugin:import/recommended"
+rules:
+  "prettier/prettier": error

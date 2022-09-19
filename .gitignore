@@ -1,0 +1,17 @@
+## Node
+node_modules
+.eslintcache
+.stylelintcache
+
+## OS X
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+## Env
+.env
+!.env.example
+
+## gitkeep
+!**/.gitkeep
