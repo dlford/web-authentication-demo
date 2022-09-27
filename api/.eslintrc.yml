@@ -11,6 +11,7 @@ settings:
 plugins:
   - prettier
   - import
+  - module-resolver
 extends:
   - "eslint:recommended"
   - "prettier"

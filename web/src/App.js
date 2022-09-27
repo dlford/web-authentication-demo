@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [apiOnline, setApiOnline] = useState(false);
+  useEffect(() => {
+    fetch('/api/healthcheck')
+      .then((res) => res.json())
+      .then((res) => setApiOnline(res?.success))
+      .catch(() => setApiOnline(false));
+  }, []);
   return (
     <div className='App'>
       <header className='App-header'>
@@ -11,17 +18,7 @@ function App() {
           className='App-logo'
           alt='logo'
         />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
+        API is {apiOnline ? 'online' : 'offline'}
       </header>
     </div>
   );
