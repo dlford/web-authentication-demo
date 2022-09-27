@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import ApiStatus from './components/ApiStatus';
 
-function App() {
-  const [apiOnline, setApiOnline] = useState(false);
-  useEffect(() => {
-    fetch('/api/healthcheck')
-      .then((res) => res.json())
-      .then((res) => setApiOnline(res?.success))
-      .catch(() => setApiOnline(false));
-  }, []);
+export default function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img
-          src={logo}
-          className='App-logo'
-          alt='logo'
-        />
-        API is {apiOnline ? 'online' : 'offline'}
-      </header>
+      <ApiStatus />
     </div>
   );
 }
-
-export default App;

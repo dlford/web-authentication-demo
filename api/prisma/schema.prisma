@@ -6,3 +6,34 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+model User {
+  id       String    @id @default(uuid()) @db.Uuid
+  email    String    @unique @db.VarChar(255)
+  role     UserRole  @default(USER)
+  password Password?
+  session  Session[]
+}
+
+model Password {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @unique @db.Uuid
+  hash      String   @db.VarChar(255)
+  updatedAt DateTime @updatedAt
+}
+
+model Session {
+  id        String   @id @default(uuid()) @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @db.Uuid
+  salt      String   @db.VarChar(255)
+  iat       DateTime @default(now())
+  exp       DateTime
+  updatedAt DateTime @updatedAt
+}
