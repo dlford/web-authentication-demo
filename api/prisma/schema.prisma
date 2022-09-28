@@ -17,7 +17,7 @@ model User {
   email    String    @unique @db.VarChar(255)
   role     UserRole  @default(USER)
   password Password?
-  session  Session[]
+  sessions Session[]
 }
 
 model Password {
