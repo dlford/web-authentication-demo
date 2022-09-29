@@ -4,7 +4,7 @@
   "description": "Demo code for my Web Authentication series, see https://www.dlford.io/series/web-authentication/",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd api && npm start\" \"cd web && npm start\""
+    "start": "concurrently \"npm --prefix api start\" \"npm --prefix web start\""
   },
   "repository": {
     "type": "git",
